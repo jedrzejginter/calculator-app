@@ -1,0 +1,33 @@
+name: cd
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'packages/**'
+      - 'Dockerfile'
+      - '!packages/app/.eslintrc.js'
+      - '!packages/app/prettierrc'
+
+jobs:
+  deploy:
+    name: Deploy to Heroku
+    runs-on: ubuntu-latest
+    env:
+      HEROKU_API_KEY: ${{ secrets.HEROKU_AUTH_TOKEN }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build docker
+      run: docker build -t registry.heroku.com/mckinsey-demo/web .
+
+    - name: Login to Heroku Container registry
+      run: heroku container:login
+
+    - name: Push container
+      run: docker push registry.heroku.com/mckinsey-demo/web
+
+    - name: Release container
+      run: heroku container:release web --app mckinsey-demo
