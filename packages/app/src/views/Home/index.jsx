@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import Calculator from "@/components/Calculator";
+
 export default function HomePage() {
   return (
     <>
@@ -7,7 +9,14 @@ export default function HomePage() {
         <title>McKinsey Demo</title>
         <meta name="description" content="Demo app for McKinsey" />
       </Head>
-      <main data-testid="Home_Main">Hello, world!</main>
+      <main data-testid="Home_Main">
+        <Calculator
+          accumulator="0"
+          onSubmit={() => {}}
+          onReset={() => {}}
+          onOperationCall={() => {}}
+        />
+      </main>
     </>
   );
 }
