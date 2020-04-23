@@ -1,0 +1,17 @@
+{
+  "name": "@monterail/mckinsey-demo",
+  "private": true,
+  "version": "1.0.0",
+  "repository": "git@github.com:monterail/mckinsey-demo.git",
+  "author": "Monterail <hello@monterail.com> (https://github.com/monterail)",
+  "license": "MIT",
+  "engines": {
+    "yarn": ">=1.15.x",
+    "node": "13.11.0"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/**"
+    ]
+  }
+}

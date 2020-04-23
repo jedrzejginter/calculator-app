@@ -1,0 +1,13 @@
+**/*
+!package.json
+!yarn.lock
+!public
+!packages
+**/node_modules
+**/*.md
+**/.next
+**/lib
+**/out
+.*
+!.coveragerc
+!.env
