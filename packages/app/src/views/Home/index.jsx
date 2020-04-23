@@ -26,7 +26,7 @@ export default function HomePage() {
         <title>McKinsey Demo</title>
         <meta name="description" content="Simple calculator" />
       </Head>
-      <main data-testid="Home_Main">
+      <main css={{ padding: "1rem" }} data-testid="Home_Main">
         <CalculatorWithState />
       </main>
     </>

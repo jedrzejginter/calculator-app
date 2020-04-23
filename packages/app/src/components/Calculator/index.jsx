@@ -20,7 +20,7 @@ export default function Calculator({
         </p>
       )}
       <div
-        css={{ border: "1px solid #000", fontSize: "2rem", padding: "2rem 1rem" }}
+        css={{ border: "1px solid #000", fontSize: "2rem", padding: "2rem 1rem", overflow: "auto" }}
         data-testid="Calculator_ResultDisplay"
       >
         {display}
