@@ -7,7 +7,7 @@ export default function HomePage() {
         <title>McKinsey Demo App</title>
         <meta name="description" content="Demo app for McKinsey" />
       </Head>
-      <main>Hello, world!</main>
+      <main data-testid="Home_Main">Hello, world!</main>
     </>
   );
 }
