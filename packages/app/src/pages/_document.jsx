@@ -10,16 +10,14 @@ export default class NextDocument extends Document {
         <Head>
           <Global
             styles={css`
-              body {
-                -webkit-font-smoothing: antialiased;
-                margin: 0;
+              html {
+                font-size: 62.5%;
               }
 
-              body,
-              #__next {
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
+              body {
+                -webkit-font-smoothing: antialiased;
+                font-family: sans-serif;
+                margin: 0;
               }
 
               *,
@@ -29,24 +27,10 @@ export default class NextDocument extends Document {
               }
             `}
           />
-          <link rel="preconnect" href="//fonts.gstatic.com" />
-          <link rel="preconnect" href="//fonts.googleapis.com" />
         </Head>
         <body>
           <Main />
           <NextScript />
-          <script
-            type="text/javascript"
-            dangerouslySetInnerHTML={{
-              __html: `
-                var proto = window.location.protocol;
-                var l = document.createElement('link');
-                l.rel = 'stylesheet';
-                l.href = proto + '//fonts.googleapis.com/css?family=Playfair+Display:700|Roboto:400&display=swap';
-                document.head.append(l);
-              `,
-            }}
-          />
         </body>
       </Html>
     );

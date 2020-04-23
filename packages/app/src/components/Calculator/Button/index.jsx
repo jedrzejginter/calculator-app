@@ -7,7 +7,29 @@ function Button({ onClick, onClickData, ...props }) {
     }
   }, [onClick, onClickData]);
 
-  return <button css={{ cursor: "pointer" }} onClick={handleClick} type="button" {...props} />;
+  return (
+    <button
+      css={{
+        MozAppearance: "none",
+        WebkitAppearance: "none",
+        appearance: "none",
+        backgroundColor: "transparent",
+        border: "none",
+        cursor: "pointer",
+        fontFamily: "inherit",
+        fontSize: "2rem",
+        height: "4rem",
+        width: "4rem",
+
+        ":hover": {
+          backgroundColor: "#ccc",
+        },
+      }}
+      onClick={handleClick}
+      type="button"
+      {...props}
+    />
+  );
 }
 
 export default memo(Button);

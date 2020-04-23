@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import Component from "../index";
 
 const props = Object.freeze({
-  accumulator: "0",
+  display: "0",
   onOperationCall: jest.fn(),
   onReset: jest.fn(),
   onSubmit: jest.fn(),
@@ -15,13 +15,22 @@ describe("Calculator", () => {
     expect(screen.getByTestId("Calculator")).toBeInTheDocument();
   });
 
-  it("should render passed accumulator value", () => {
-    render(<Component {...props} accumulator="123.45" />);
+  it("should render passed display text", () => {
+    render(<Component {...props} display="123.45" />);
 
     const element = screen.getByTestId("Calculator_ResultDisplay");
 
     expect(element).toBeInTheDocument();
     expect(element).toHaveTextContent("123.45");
+  });
+
+  it("should render error", () => {
+    render(<Component {...props} error="Custom error" />);
+
+    const element = screen.getByTestId("Calculator_ErrorDisplay");
+
+    expect(element).toBeInTheDocument();
+    expect(element).toHaveTextContent("Custom error");
   });
 
   it("should execute callback on reset", () => {
