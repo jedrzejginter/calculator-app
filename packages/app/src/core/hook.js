@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { initialState, onOperator, onSubmit, onClear, onCharacter } from "./state";
+import { initialState, onOperator, onSubmit, onClear, onCharacter } from "@project/core";
 
 export default function useCalculator() {
   const [state, setState] = useState(initialState);

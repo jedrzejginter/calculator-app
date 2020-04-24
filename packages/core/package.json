@@ -1,0 +1,26 @@
+{
+  "name": "@project/core",
+  "version": "1.0.0",
+  "author": "Monterail <hello@monterail.com> (https://github.com/monterail)",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "scripts": {
+    "lib": "npx babel src --out-dir lib --ignore 'src/**/*.spec.js'",
+    "lint": "project-eslint 'src/*.js' '*.js'",
+    "test": "jest",
+    "pre-commit": "lint-staged"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.8.4",
+    "@babel/core": "7.9.0",
+    "@babel/preset-env": "7.9.5",
+    "jest": "25.4.0",
+    "lint-staged": "10.1.7"
+  },
+  "optionalDependencies": {
+    "@project/eslint": "1.0.0"
+  },
+  "lint-staged": {
+    "*.js": "yarn lint --fix"
+  }
+}

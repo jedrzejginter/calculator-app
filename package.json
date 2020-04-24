@@ -13,5 +13,16 @@
     "packages": [
       "packages/**"
     ]
+  },
+  "dependencies": {
+    "lerna": "3.20.2"
+  },
+  "optionalDependencies": {
+    "husky": "4.2.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lerna run pre-commit"
+    }
   }
 }
