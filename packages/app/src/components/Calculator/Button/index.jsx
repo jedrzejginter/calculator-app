@@ -2,9 +2,7 @@ import { memo, useCallback } from "react";
 
 function Button({ onClick, onClickData, ...props }) {
   const handleClick = useCallback(() => {
-    if (onClick) {
-      onClick(onClickData);
-    }
+    onClick(onClickData);
   }, [onClick, onClickData]);
 
   return (
@@ -17,9 +15,9 @@ function Button({ onClick, onClickData, ...props }) {
         border: "none",
         cursor: "pointer",
         fontFamily: "inherit",
-        fontSize: "2rem",
-        height: "4rem",
-        width: "4rem",
+        fontSize: "3rem",
+        height: "6rem",
+        width: "6rem",
 
         ":hover": {
           backgroundColor: "#ccc",

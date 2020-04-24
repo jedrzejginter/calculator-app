@@ -4,8 +4,8 @@ import Component from "../index";
 
 const props = Object.freeze({
   display: "0",
-  onOperationCall: jest.fn(),
-  onReset: jest.fn(),
+  onOperator: jest.fn(),
+  onClear: jest.fn(),
   onSubmit: jest.fn(),
 });
 
@@ -35,7 +35,7 @@ describe("Calculator", () => {
 
   it("should execute callback on reset", () => {
     const callback = jest.fn();
-    render(<Component {...props} onReset={callback} />);
+    render(<Component {...props} onClear={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_ResetBtn"));
 
@@ -53,7 +53,7 @@ describe("Calculator", () => {
 
   it("should call for addition", () => {
     const callback = jest.fn();
-    render(<Component {...props} onOperationCall={callback} />);
+    render(<Component {...props} onOperator={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_AddBtn"));
 
@@ -63,7 +63,7 @@ describe("Calculator", () => {
 
   it("should call for subtraction", () => {
     const callback = jest.fn();
-    render(<Component {...props} onOperationCall={callback} />);
+    render(<Component {...props} onOperator={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_SubBtn"));
 
@@ -73,7 +73,7 @@ describe("Calculator", () => {
 
   it("should call for subtraction", () => {
     const callback = jest.fn();
-    render(<Component {...props} onOperationCall={callback} />);
+    render(<Component {...props} onOperator={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_SubBtn"));
 
@@ -83,7 +83,7 @@ describe("Calculator", () => {
 
   it("should call for multiplication", () => {
     const callback = jest.fn();
-    render(<Component {...props} onOperationCall={callback} />);
+    render(<Component {...props} onOperator={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_MultBtn"));
 
@@ -93,7 +93,7 @@ describe("Calculator", () => {
 
   it("should call for division", () => {
     const callback = jest.fn();
-    render(<Component {...props} onOperationCall={callback} />);
+    render(<Component {...props} onOperator={callback} />);
 
     fireEvent.click(screen.getByTestId("Calculator_DivBtn"));
 

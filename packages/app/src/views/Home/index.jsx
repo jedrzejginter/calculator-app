@@ -10,10 +10,10 @@ function CalculatorWithState() {
     <Calculator
       display={state.display}
       error={state.error}
-      onDigitCall={callbacks.onDigit}
-      onDotCall={callbacks.onDot}
-      onOperationCall={callbacks.onOperator}
-      onReset={callbacks.onClear}
+      onDigit={callbacks.onDigit}
+      onDot={callbacks.onDot}
+      onOperator={callbacks.onOperator}
+      onClear={callbacks.onClear}
       onSubmit={callbacks.onSubmit}
     />
   );
