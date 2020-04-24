@@ -35,16 +35,14 @@ export function onCharacter(state, char) {
 }
 
 export function onSetOperation(state, op) {
-  if (state.acc === "") {
-    return state;
-  }
+  const hasEmptyAcc = state.acc === "";
 
   return {
     ...state,
     op,
-    acc: "",
+    acc: hasEmptyAcc ? state.acc : "",
     err: undefined,
-    result: parseFloat(state.acc),
+    result: hasEmptyAcc ? state.result : parseFloat(state.acc),
   };
 }
 

@@ -1,6 +1,27 @@
-import { initialState, onClear, onAccUpdate, onSetOperation, onSubmit } from "../manager";
+import { cleanVal, initialState, onClear, onAccUpdate, onSetOperation, onSubmit } from "../manager";
 
 describe("CalculatorManager", () => {
+  describe("cleanVal", () => {
+    it("should replace leading zeros in int values", () => {
+      expect(cleanVal("00")).toBe("0");
+      expect(cleanVal("01")).toBe("1");
+      expect(cleanVal("001")).toBe("1");
+    });
+
+    // If it would be removed, used wouldn't be able to type floats.
+    it("should leave trailing dot", () => {
+      expect(cleanVal("0.")).toBe("0.");
+    });
+
+    it("should remove multiple trailing dots", () => {
+      expect(cleanVal("0..")).toBe("0.");
+    });
+
+    it("should replace multiple consencutive dots with one", () => {
+      expect(cleanVal("1..234")).toBe("1.234");
+    });
+  });
+
   describe("onClear", () => {
     it("should restore all values to initial ones", () => {
       expect(onClear({ ...initialState, acc: "1", result: 2 })).toStrictEqual(initialState);
@@ -33,6 +54,15 @@ describe("CalculatorManager", () => {
 
     it("should copy accumulator value to result", () => {
       expect(onSetOperation(state, "/").result).toBe(20);
+    });
+
+    it("should not overwrite result for empty accumulator", () => {
+      expect(onSetOperation({ ...state, acc: "", result: 1 }, "/")).toStrictEqual({
+        ...state,
+        acc: "",
+        result: 1,
+        op: "/",
+      });
     });
   });
 
