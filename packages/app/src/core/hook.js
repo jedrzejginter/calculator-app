@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 
-import { initialState, onSetOperation, onSubmit, onClear, onCharacter } from "./manager";
+import { initialState, onOperator, onSubmit, onClear, onCharacter } from "./state";
 
 export default function useCalculator() {
   const [state, setState] = useState(initialState);
 
   const handleSetOperation = useCallback(
     (operator) => {
-      setState(onSetOperation(state, operator));
+      setState(onOperator(state, operator));
     },
     [state],
   );

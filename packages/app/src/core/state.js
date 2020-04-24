@@ -34,7 +34,7 @@ export function onCharacter(state, char) {
   return onAccUpdate(state, newAcc);
 }
 
-export function onSetOperation(state, op) {
+export function onOperator(state, op) {
   const hasEmptyAcc = state.acc === "";
 
   return {

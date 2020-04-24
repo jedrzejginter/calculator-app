@@ -4,11 +4,11 @@ import {
   onAccUpdate,
   onCharacter,
   onClear,
-  onSetOperation,
+  onOperator,
   onSubmit,
-} from "../manager";
+} from "../state";
 
-describe("CalculatorManager", () => {
+describe("state", () => {
   describe("initialState", () => {
     it("should have accumulator set to empty string", () => {
       expect(initialState.acc).toBe("");
@@ -72,7 +72,7 @@ describe("CalculatorManager", () => {
     });
   });
 
-  describe("onSetOperation", () => {
+  describe("onOperator", () => {
     const state = Object.freeze({
       ...initialState,
       acc: "20",
@@ -80,19 +80,19 @@ describe("CalculatorManager", () => {
     });
 
     it("should update operation", () => {
-      expect(onSetOperation(state, "/").op).toBe("/");
+      expect(onOperator(state, "/").op).toBe("/");
     });
 
     it("should reset accumulator value", () => {
-      expect(onSetOperation(state, "/").acc).toBe("");
+      expect(onOperator(state, "/").acc).toBe("");
     });
 
     it("should copy accumulator value to result", () => {
-      expect(onSetOperation(state, "/").result).toBe(20);
+      expect(onOperator(state, "/").result).toBe(20);
     });
 
     it("should not overwrite result for empty accumulator", () => {
-      expect(onSetOperation({ ...state, acc: "", result: 1 }, "/")).toStrictEqual({
+      expect(onOperator({ ...state, acc: "", result: 1 }, "/")).toStrictEqual({
         ...state,
         acc: "",
         result: 1,

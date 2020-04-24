@@ -1,9 +1,9 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 
 import useCalculator from "../hook";
-import * as manager from "../manager";
+import * as state from "../state";
 
-jest.mock("../manager");
+jest.mock("../state");
 
 describe("useCalculator", () => {
   it("should render without errors", () => {
@@ -18,7 +18,7 @@ describe("useCalculator", () => {
   describe("on clear", () => {
     it("should call reset function", () => {
       const mock = jest.fn();
-      manager.onClear.mockImplementationOnce(mock);
+      state.onClear.mockImplementationOnce(mock);
 
       const { result } = renderHook(() => useCalculator());
 
@@ -33,7 +33,7 @@ describe("useCalculator", () => {
   describe("on digit", () => {
     it("should call character setter", () => {
       const mock = jest.fn();
-      manager.onCharacter.mockImplementationOnce(mock);
+      state.onCharacter.mockImplementationOnce(mock);
 
       const { result } = renderHook(() => useCalculator());
 
@@ -48,7 +48,7 @@ describe("useCalculator", () => {
   describe("on dot", () => {
     it("should call character setter", () => {
       const mock = jest.fn();
-      manager.onCharacter.mockImplementationOnce(mock);
+      state.onCharacter.mockImplementationOnce(mock);
 
       const { result } = renderHook(() => useCalculator());
 
@@ -63,7 +63,7 @@ describe("useCalculator", () => {
   describe("on operator", () => {
     it("should call operator setter", () => {
       const mock = jest.fn();
-      manager.onSetOperation.mockImplementationOnce(mock);
+      state.onOperator.mockImplementationOnce(mock);
 
       const { result } = renderHook(() => useCalculator());
 
@@ -78,7 +78,7 @@ describe("useCalculator", () => {
   describe("on submit", () => {
     it("should call submit function", () => {
       const mock = jest.fn();
-      manager.onSubmit.mockImplementationOnce(mock);
+      state.onSubmit.mockImplementationOnce(mock);
 
       const { result } = renderHook(() => useCalculator());
 
