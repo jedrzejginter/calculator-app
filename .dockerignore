@@ -1,13 +1,13 @@
 **/*
 !package.json
 !yarn.lock
-!public
+!lerna.json
 !packages
+!public
 **/node_modules
 **/*.md
 **/.next
 **/lib
 **/out
 .*
-!.coveragerc
 !.env
