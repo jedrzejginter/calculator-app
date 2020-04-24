@@ -10,7 +10,7 @@ import { add, subtract, divide, multiply } from "./operations";
  */
 
 /**
- * Initial, non-mutable initial state for calculator.
+ * Initial, non-mutable state for calculator.
  * @type {CalculatorState}
  */
 export const initialState = Object.freeze({
