@@ -70,6 +70,10 @@ describe("state", () => {
       expect(onOperator(state, "/").input).toBe("");
     });
 
+    it("should reset error value", () => {
+      expect(onOperator({ ...state, error: "Cannot divide by 0" }, "*").error).toBeUndefined();
+    });
+
     it("should copy input value to result", () => {
       expect(onOperator(state, "/").result).toBe(20);
     });
