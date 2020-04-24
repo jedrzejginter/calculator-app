@@ -7,10 +7,10 @@ module.exports = {
   moduleNameMapper: {
     "^@/(.+)$": path.join(__dirname, "/src", "$1"),
   },
+  setupFilesAfterEnv: ["./jest.setup.js"],
   collectCoverage: true,
   collectCoverageFrom: ["./src/**/*"],
   coveragePathIgnorePatterns: ["./src/pages"],
-  setupFilesAfterEnv: ["./jest.setup.js"],
   coverageThreshold: {
     global: {
       branches: 100,
