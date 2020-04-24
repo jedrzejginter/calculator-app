@@ -1,17 +1,9 @@
-import {
-  cleanVal,
-  initialState,
-  onAccUpdate,
-  onCharacter,
-  onClear,
-  onOperator,
-  onSubmit,
-} from "../state";
+import { cleanVal, initialState, onCharacter, onClear, onOperator, onSubmit } from "../state";
 
 describe("state", () => {
   describe("initialState", () => {
-    it("should have accumulator set to empty string", () => {
-      expect(initialState.acc).toBe("");
+    it("should have input set to empty string", () => {
+      expect(initialState.input).toBe("");
     });
 
     it("should have result set to 0", () => {
@@ -19,11 +11,11 @@ describe("state", () => {
     });
 
     it("should have no error set", () => {
-      expect(initialState.err).toBeUndefined();
+      expect(initialState.error).toBeUndefined();
     });
 
     it("should have no operator set", () => {
-      expect(initialState.op).toBeUndefined();
+      expect(initialState.operator).toBeUndefined();
     });
   });
 
@@ -49,54 +41,45 @@ describe("state", () => {
   });
 
   describe("onCharacter", () => {
-    it("should append character to accumulator", () => {
-      expect(onCharacter({ ...initialState, acc: "1" }, 4)).toStrictEqual({
+    it("should append character to input", () => {
+      expect(onCharacter({ ...initialState, input: "1" }, 4)).toStrictEqual({
         ...initialState,
-        acc: "14",
+        input: "14",
       });
     });
   });
 
   describe("onClear", () => {
     it("should restore all values to initial ones", () => {
-      expect(onClear({ ...initialState, acc: "1", result: 2 })).toStrictEqual(initialState);
-    });
-  });
-
-  describe("onAccUpdate", () => {
-    it("should update accumulator value", () => {
-      expect(onAccUpdate({ ...initialState }, "100")).toStrictEqual({
-        ...initialState,
-        acc: "100",
-      });
+      expect(onClear({ ...initialState, input: "1", result: 2 })).toStrictEqual(initialState);
     });
   });
 
   describe("onOperator", () => {
     const state = Object.freeze({
       ...initialState,
-      acc: "20",
+      input: "20",
       result: 10,
     });
 
-    it("should update operation", () => {
-      expect(onOperator(state, "/").op).toBe("/");
+    it("should update operator", () => {
+      expect(onOperator(state, "/").operator).toBe("/");
     });
 
-    it("should reset accumulator value", () => {
-      expect(onOperator(state, "/").acc).toBe("");
+    it("should reset input value", () => {
+      expect(onOperator(state, "/").input).toBe("");
     });
 
-    it("should copy accumulator value to result", () => {
+    it("should copy input value to result", () => {
       expect(onOperator(state, "/").result).toBe(20);
     });
 
-    it("should not overwrite result for empty accumulator", () => {
-      expect(onOperator({ ...state, acc: "", result: 1 }, "/")).toStrictEqual({
+    it("should not overwrite result if input is empty", () => {
+      expect(onOperator({ ...state, input: "", result: 1 }, "/")).toStrictEqual({
         ...state,
-        acc: "",
+        input: "",
         result: 1,
-        op: "/",
+        operator: "/",
       });
     });
   });
@@ -104,7 +87,7 @@ describe("state", () => {
   describe("onSubmit", () => {
     const state = Object.freeze({
       ...initialState,
-      acc: "30",
+      input: "30",
       result: 150,
     });
 
@@ -113,55 +96,55 @@ describe("state", () => {
     });
 
     it("should work for addition", () => {
-      expect(onSubmit({ ...state, op: "+" })).toStrictEqual({
-        err: undefined,
-        op: undefined,
-        acc: "",
+      expect(onSubmit({ ...state, operator: "+" })).toStrictEqual({
+        error: undefined,
+        operator: undefined,
+        input: "",
         result: 180,
       });
     });
 
     it("should work for subtraction", () => {
-      expect(onSubmit({ ...state, op: "-" })).toStrictEqual({
-        err: undefined,
-        op: undefined,
-        acc: "",
+      expect(onSubmit({ ...state, operator: "-" })).toStrictEqual({
+        error: undefined,
+        operator: undefined,
+        input: "",
         result: 120,
       });
     });
 
     it("should work for multiplication", () => {
-      expect(onSubmit({ ...state, op: "*" })).toStrictEqual({
-        err: undefined,
-        op: undefined,
-        acc: "",
+      expect(onSubmit({ ...state, operator: "*" })).toStrictEqual({
+        error: undefined,
+        operator: undefined,
+        input: "",
         result: 4500,
       });
     });
 
     it("should work for division", () => {
-      expect(onSubmit({ ...state, op: "/" })).toStrictEqual({
-        err: undefined,
-        op: undefined,
-        acc: "",
+      expect(onSubmit({ ...state, operator: "/" })).toStrictEqual({
+        error: undefined,
+        operator: undefined,
+        input: "",
         result: 5,
       });
     });
 
     it("should work for division by 0", () => {
-      expect(onSubmit({ err: undefined, result: 1, acc: "0", op: "/" })).toStrictEqual({
-        err: "Cannot divide by 0",
-        op: undefined,
-        acc: "",
+      expect(onSubmit({ error: undefined, result: 1, input: "0", operator: "/" })).toStrictEqual({
+        error: "Cannot divide by 0",
+        operator: undefined,
+        input: "",
         result: 0,
       });
     });
 
-    it("should copy result to accumulator if accumulator is empty", () => {
-      expect(onSubmit({ ...state, result: 20, acc: "", op: "/" })).toStrictEqual({
-        err: undefined,
-        op: undefined,
-        acc: "",
+    it("should treat result as input if input is empty", () => {
+      expect(onSubmit({ ...state, result: 20, input: "", operator: "/" })).toStrictEqual({
+        error: undefined,
+        operator: undefined,
+        input: "",
         result: 1,
       });
     });

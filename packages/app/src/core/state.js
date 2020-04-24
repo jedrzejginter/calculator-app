@@ -1,10 +1,10 @@
 import { add, subtract, divide, multiply } from "./operations";
 
 export const initialState = Object.freeze({
-  err: undefined,
-  op: undefined,
+  error: undefined,
+  input: "",
+  operator: undefined,
   result: 0,
-  acc: "",
 });
 
 export function cleanVal(v) {
@@ -22,57 +22,51 @@ export function onClear(state) {
   };
 }
 
-export function onAccUpdate(state, val) {
+export function onCharacter(state, char) {
   return {
     ...state,
-    acc: val,
+    input: cleanVal(`${state.input}${char}`),
   };
 }
 
-export function onCharacter(state, char) {
-  const newAcc = cleanVal(`${state.acc}${char}`);
-  return onAccUpdate(state, newAcc);
-}
-
-export function onOperator(state, op) {
-  const hasEmptyAcc = state.acc === "";
+export function onOperator(state, operator) {
+  const hasEmptyInput = state.input === "";
 
   return {
     ...state,
-    op,
-    acc: hasEmptyAcc ? state.acc : "",
-    err: undefined,
-    result: hasEmptyAcc ? state.result : parseFloat(state.acc),
+    operator,
+    error: undefined,
+    input: hasEmptyInput ? state.input : "",
+    result: hasEmptyInput ? state.result : parseFloat(state.input),
   };
 }
 
 export function onSubmit(state) {
-  const { op, acc, result } = state;
+  const { operator, input, result } = state;
 
-  let newErr;
+  let newError;
   let newResult = result;
 
-  const x = result;
-  const y = parseFloat(acc || result.toString());
+  const inputValue = parseFloat(input || result.toString());
 
-  switch (op) {
+  switch (operator) {
     case "+": {
-      newResult = add(x, y);
+      newResult = add(result, inputValue);
       break;
     }
     case "-": {
-      newResult = subtract(x, y);
+      newResult = subtract(result, inputValue);
       break;
     }
     case "*": {
-      newResult = multiply(x, y);
+      newResult = multiply(result, inputValue);
       break;
     }
     case "/": {
       try {
-        newResult = divide(x, y);
-      } catch (err) {
-        newErr = err.message;
+        newResult = divide(result, inputValue);
+      } catch (e) {
+        newError = e.message;
         newResult = 0;
       }
       break;
@@ -84,9 +78,8 @@ export function onSubmit(state) {
 
   return {
     ...state,
-    acc: "",
-    err: newErr,
-    op: undefined,
+    ...initialState,
+    error: newError,
     result: newResult,
   };
 }

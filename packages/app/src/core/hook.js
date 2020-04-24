@@ -5,17 +5,6 @@ import { initialState, onOperator, onSubmit, onClear, onCharacter } from "./stat
 export default function useCalculator() {
   const [state, setState] = useState(initialState);
 
-  const handleSetOperation = useCallback(
-    (operator) => {
-      setState(onOperator(state, operator));
-    },
-    [state],
-  );
-
-  const handleSubmit = useCallback(() => {
-    setState(onSubmit(state));
-  }, [state]);
-
   const handleDigit = useCallback(
     (digit) => {
       setState(onCharacter(state, digit));
@@ -27,16 +16,27 @@ export default function useCalculator() {
     setState(onCharacter(state, "."));
   }, [state]);
 
+  const handleOperator = useCallback(
+    (operator) => {
+      setState(onOperator(state, operator));
+    },
+    [state],
+  );
+
+  const handleSubmit = useCallback(() => {
+    setState(onSubmit(state));
+  }, [state]);
+
   const handleClear = useCallback(() => {
     setState(onClear(state));
   }, [state]);
 
   return {
     state: {
-      display: state.acc || state.result.toString(),
-      error: state.err,
+      display: state.input || state.result.toString(),
+      error: state.error,
     },
-    onOperator: handleSetOperation,
+    onOperator: handleOperator,
     onDot: handleDot,
     onSubmit: handleSubmit,
     onDigit: handleDigit,
