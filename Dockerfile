@@ -1,8 +1,7 @@
 FROM node:13.11.0-alpine AS builder
 WORKDIR /usr/src/project
-COPY package.json yarn.lock packages/app/package.json ./
-RUN yarn --frozen-lockfile
 COPY . .
+RUN yarn --frozen-lockfile --ignore-optional
 WORKDIR /usr/src/project/packages/app
 RUN yarn build
 
