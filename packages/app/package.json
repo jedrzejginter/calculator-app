@@ -10,7 +10,7 @@
     "lint": "project-eslint '**/*.{js,jsx}'",
     "lint-and-fix": "yarn lint --fix",
     "test": "jest",
-    "pre-commit": "yarn test && lint-staged"
+    "pre-commit": "lint-staged"
   },
   "dependencies": {
     "@emotion/babel-preset-css-prop": "10.0.27",
