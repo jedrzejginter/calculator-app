@@ -53,7 +53,7 @@ export function onSubmit(state) {
   let newResult = result;
 
   const x = result;
-  const y = parseFloat(acc);
+  const y = parseFloat(acc || result.toString());
 
   switch (op) {
     case "+": {

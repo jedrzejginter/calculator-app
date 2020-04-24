@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Calculator from "@/components/Calculator";
-import useCalculator from "@/core/useCalculator";
+import useCalculator from "@/core/hook";
 
 function CalculatorWithState() {
   const { state, ...callbacks } = useCalculator();

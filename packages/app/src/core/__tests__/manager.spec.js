@@ -1,6 +1,32 @@
-import { cleanVal, initialState, onClear, onAccUpdate, onSetOperation, onSubmit } from "../manager";
+import {
+  cleanVal,
+  initialState,
+  onAccUpdate,
+  onCharacter,
+  onClear,
+  onSetOperation,
+  onSubmit,
+} from "../manager";
 
 describe("CalculatorManager", () => {
+  describe("initialState", () => {
+    it("should have accumulator set to empty string", () => {
+      expect(initialState.acc).toBe("");
+    });
+
+    it("should have result set to 0", () => {
+      expect(initialState.result).toBe(0);
+    });
+
+    it("should have no error set", () => {
+      expect(initialState.err).toBeUndefined();
+    });
+
+    it("should have no operator set", () => {
+      expect(initialState.op).toBeUndefined();
+    });
+  });
+
   describe("cleanVal", () => {
     it("should replace leading zeros in int values", () => {
       expect(cleanVal("00")).toBe("0");
@@ -19,6 +45,15 @@ describe("CalculatorManager", () => {
 
     it("should replace multiple consencutive dots with one", () => {
       expect(cleanVal("1..234")).toBe("1.234");
+    });
+  });
+
+  describe("onCharacter", () => {
+    it("should append character to accumulator", () => {
+      expect(onCharacter({ ...initialState, acc: "1" }, 4)).toStrictEqual({
+        ...initialState,
+        acc: "14",
+      });
     });
   });
 
@@ -114,11 +149,20 @@ describe("CalculatorManager", () => {
     });
 
     it("should work for division by 0", () => {
-      expect(onSubmit({ ...state, result: 1, acc: 0, op: "/" })).toStrictEqual({
+      expect(onSubmit({ err: undefined, result: 1, acc: "0", op: "/" })).toStrictEqual({
         err: "Cannot divide by 0",
         op: undefined,
         acc: "",
         result: 0,
+      });
+    });
+
+    it("should copy result to accumulator if accumulator is empty", () => {
+      expect(onSubmit({ ...state, result: 20, acc: "", op: "/" })).toStrictEqual({
+        err: undefined,
+        op: undefined,
+        acc: "",
+        result: 1,
       });
     });
   });
