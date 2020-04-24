@@ -1,10 +1,14 @@
 {
-  "name": "@monterail/mckinsey-eslint",
+  "name": "@project/eslint",
   "version": "1.0.0",
   "author": "Monterail <hello@monterail.com> (https://github.com/monterail)",
   "license": "MIT",
   "bin": {
-    "mckinsey-eslint": "./cli.js"
+    "project-eslint": "./cli.js"
+  },
+  "scripts": {
+    "lint": "./cli.js '*.js'",
+    "lint-and-fix": "yarn lint --fix"
   },
   "dependencies": {
     "@babel/core": "7.9.0",

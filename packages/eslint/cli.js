@@ -3,7 +3,7 @@ const cps = require("child_process");
 const path = require("path");
 
 const argv = process.argv.slice(2);
-const eslintConfigPath = path.join(__dirname, "/.eslintrc.js");
+const eslintConfigPath = path.join(__dirname, "/eslint.config.js");
 
 try {
   cps.execSync(`npx eslint --config '${eslintConfigPath}' ${argv.join(" ")}`, {
