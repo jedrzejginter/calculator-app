@@ -4,10 +4,15 @@ on:
     branches:
       - master
     paths:
-      - 'packages/**'
+      - '.github/workflows/cd.yml'
+      - 'packages/**/.nginx'
+      - 'packages/**/src'
+      - 'packages/**/package.json'
+      - 'packages/**/babel.config.js'
+      - 'packages/**/next.config.js'
       - 'Dockerfile'
-      - '!packages/app/.eslintrc.js'
-      - '!packages/app/prettierrc'
+      - '!packages/**/*.spec.*'
+      - '!packages/**/*.snap'
 
 jobs:
   deploy:
