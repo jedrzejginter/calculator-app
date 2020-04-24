@@ -4,8 +4,11 @@ import Component from "../index";
 
 const props = Object.freeze({
   display: "0",
-  onOperator: jest.fn(),
+  error: undefined,
   onClear: jest.fn(),
+  onDigit: jest.fn(),
+  onDot: jest.fn(),
+  onOperator: jest.fn(),
   onSubmit: jest.fn(),
 });
 
@@ -99,5 +102,19 @@ describe("Calculator", () => {
 
     expect(callback).toBeCalledTimes(1);
     expect(callback).toBeCalledWith("/");
+  });
+
+  it("should execute callbacks for digit buttons", () => {
+    const { rerender } = render(<Component {...props} />);
+
+    for (let i = 0; i <= 9; i += 1) {
+      const callback = jest.fn();
+
+      rerender(<Component {...props} onDigit={callback} />);
+
+      fireEvent.click(screen.getByTestId(`Calculator_${i}Btn`));
+
+      expect(callback).toBeCalledWith(i);
+    }
   });
 });
