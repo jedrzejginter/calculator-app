@@ -2,6 +2,7 @@ FROM node:13.11.0-alpine AS builder
 WORKDIR /usr/src/project
 COPY . .
 RUN yarn --frozen-lockfile --ignore-optional
+RUN npx lerna run lib
 WORKDIR /usr/src/project/packages/app
 RUN yarn build
 

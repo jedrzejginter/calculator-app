@@ -42,11 +42,14 @@ jobs:
     - name: Install packages
       run: yarn --frozen-lockfile
 
+    - name: Build libs in packages
+      run: npx lerna run lib
+
     - name: ESLint
-      run: (npx lerna run lint)
+      run: npx lerna run lint
 
     - name: Run unit tests
-      run: (npx lerna run test)
+      run: npx lerna run test
 
     - name: Build the app
       run: (cd packages/app && yarn build)
