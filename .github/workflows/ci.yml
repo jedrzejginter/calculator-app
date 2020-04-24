@@ -43,10 +43,10 @@ jobs:
       run: yarn --frozen-lockfile
 
     - name: ESLint
-      run: (cd packages/app && yarn lint)
+      run: (npx lerna run lint)
 
     - name: Run unit tests
-      run: (cd packages/app && yarn test)
+      run: (npx lerna run test)
 
     - name: Build the app
       run: (cd packages/app && yarn build)
