@@ -26,7 +26,7 @@ describe("state", () => {
       expect(cleanVal("001")).toBe("1");
     });
 
-    // If it would be removed, used wouldn't be able to type floats.
+    // If it would be removed, user wouldn't be able to type floats.
     it("should leave trailing dot", () => {
       expect(cleanVal("0.")).toBe("0.");
     });
