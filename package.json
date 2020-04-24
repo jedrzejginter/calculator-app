@@ -1,9 +1,9 @@
 {
-  "name": "@monterail/mckinsey-demo",
+  "name": "mckinsey-demo",
   "private": true,
   "version": "1.0.0",
-  "repository": "git@github.com:monterail/mckinsey-demo.git",
-  "author": "Monterail <hello@monterail.com> (https://github.com/monterail)",
+  "repository": "git@github.com:jedrzejginter/mckinsey-demo.git",
+  "author": "Jędrzej Ginter <dzeejj@gmail.com> (https://github.com/jedrzejginter)",
   "license": "MIT",
   "engines": {
     "yarn": ">=1.15.x",

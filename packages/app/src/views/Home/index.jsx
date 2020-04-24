@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Calculator from "@/components/Calculator";
-import useCalculator from "@/core/hook";
+import useCalculator from "@/hooks/useCalculator";
 
 function CalculatorWithState() {
   const { state, ...callbacks } = useCalculator();
@@ -10,10 +10,10 @@ function CalculatorWithState() {
     <Calculator
       display={state.display}
       error={state.error}
+      onClear={callbacks.onClear}
       onDigit={callbacks.onDigit}
       onDot={callbacks.onDot}
       onOperator={callbacks.onOperator}
-      onClear={callbacks.onClear}
       onSubmit={callbacks.onSubmit}
     />
   );

@@ -1,7 +1,7 @@
 import * as core from "@project/core";
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import useCalculator from "../hook";
+import useCalculator from "../useCalculator";
 
 jest.mock("@project/core");
 

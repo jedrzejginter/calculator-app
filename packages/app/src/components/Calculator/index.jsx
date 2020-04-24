@@ -1,5 +1,46 @@
 import Button from "./Button";
 
+const inputs = [
+  { value: 1, id: 1 },
+  { value: 2, id: 2 },
+  { value: 3, id: 3 },
+  { value: 4, id: 4 },
+  { value: 5, id: 5 },
+  { value: 6, id: 6 },
+  { value: 7, id: 7 },
+  { value: 8, id: 8 },
+  { value: 9, id: 9 },
+  { value: 0, id: 0 },
+];
+
+const operations = [
+  { operator: "+", id: "Add" },
+  { operator: "-", id: "Sub" },
+  { operator: "*", id: "Mult" },
+  { operator: "/", id: "Div" },
+];
+
+/**
+ * @typedef {("+"|"-"|"*"|"/")} BinaryOperator
+ *
+ * Component props.
+ * @typedef {Object} Props
+ * @property {string} display - Text to display as current user input
+ * @property {(string|undefined)} error - Text to display as current user input
+ * @property {(operator: BinaryOperator) => void} onOperator - Executed when some operator button
+ * is clicked
+ * @property {(digit: number) => void} onDigit - Executed when some digit button is clicked
+ * @property {() => void} onDot - Executed when decimal separator button is clicked
+ * @property {() => void} onClear - Executed when user requests calculator state to be cleared
+ * @property {() => void} onSubmit - Executed when user wants to get the result of current operation
+ */
+
+/**
+ * Component displaying the whole calculator with buttons,
+ * input display, result and possible error.
+ * @param {Props} props
+ * @returns {JSX.Element}
+ */
 export default function Calculator({
   display,
   error,
@@ -29,53 +70,31 @@ export default function Calculator({
         <div
           css={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", width: "18rem" }}
         >
-          <Button data-testid="Calculator_1Btn" onClick={onDigit} onClickData={1}>
-            1
-          </Button>
-          <Button data-testid="Calculator_2Btn" onClick={onDigit} onClickData={2}>
-            2
-          </Button>
-          <Button data-testid="Calculator_3Btn" onClick={onDigit} onClickData={3}>
-            3
-          </Button>
-          <Button data-testid="Calculator_4Btn" onClick={onDigit} onClickData={4}>
-            4
-          </Button>
-          <Button data-testid="Calculator_5Btn" onClick={onDigit} onClickData={5}>
-            5
-          </Button>
-          <Button data-testid="Calculator_6Btn" onClick={onDigit} onClickData={6}>
-            6
-          </Button>
-          <Button data-testid="Calculator_7Btn" onClick={onDigit} onClickData={7}>
-            7
-          </Button>
-          <Button data-testid="Calculator_8Btn" onClick={onDigit} onClickData={8}>
-            8
-          </Button>
-          <Button data-testid="Calculator_9Btn" onClick={onDigit} onClickData={9}>
-            9
-          </Button>
-          <Button data-testid="Calculator_0Btn" onClick={onDigit} onClickData={0}>
-            0
-          </Button>
+          {inputs.map(({ id, value }) => (
+            <Button
+              data-testid={`Calculator_${id}Btn`}
+              key={id}
+              onClick={onDigit}
+              onClickData={value}
+            >
+              {value}
+            </Button>
+          ))}
           <Button data-testid="Calculator_DotBtn" onClick={onDot}>
             .
           </Button>
         </div>
         <div css={{ display: "flex", flexWrap: "wrap", width: "12rem" }}>
-          <Button data-testid="Calculator_AddBtn" onClick={onOperator} onClickData="+">
-            +
-          </Button>
-          <Button data-testid="Calculator_SubBtn" onClick={onOperator} onClickData="-">
-            -
-          </Button>
-          <Button data-testid="Calculator_MultBtn" onClick={onOperator} onClickData="*">
-            *
-          </Button>
-          <Button data-testid="Calculator_DivBtn" onClick={onOperator} onClickData="/">
-            /
-          </Button>
+          {operations.map(({ id, operator }) => (
+            <Button
+              data-testid={`Calculator_${id}Btn`}
+              key={id}
+              onClick={onOperator}
+              onClickData={operator}
+            >
+              {operator}
+            </Button>
+          ))}
           <Button data-testid="Calculator_EqualBtn" onClick={onSubmit}>
             =
           </Button>
