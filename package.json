@@ -13,5 +13,20 @@
     "packages": [
       "packages/**"
     ]
+  },
+  "dependencies": {
+    "lerna": "3.20.2"
+  },
+  "optionalDependencies": {
+    "husky": "4.2.5",
+    "lint-staged": "10.1.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "npx lerna run lint-and-fix"
   }
 }
