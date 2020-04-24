@@ -1,7 +1,7 @@
 {
   "name": "@project/core",
   "version": "1.0.0",
-  "author": "Monterail <hello@monterail.com> (https://github.com/monterail)",
+  "author": "Jędrzej Ginter <dzeejj@gmail.com> (https://github.com/jedrzejginter)",
   "license": "MIT",
   "main": "./lib/index.js",
   "scripts": {
