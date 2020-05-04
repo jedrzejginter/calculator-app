@@ -1,8 +1,8 @@
 {
-  "name": "mckinsey-demo",
+  "name": "calculator-app",
   "private": true,
   "version": "1.0.0",
-  "repository": "git@github.com:jedrzejginter/mckinsey-demo.git",
+  "repository": "git@github.com:jedrzejginter/calculator-app.git",
   "author": "Jędrzej Ginter <dzeejj@gmail.com> (https://github.com/jedrzejginter)",
   "license": "MIT",
   "engines": {

@@ -23,7 +23,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>McKinsey Demo</title>
+        <title>Calculator App</title>
         <meta name="description" content="Simple calculator" />
       </Head>
       <main css={{ padding: "1rem" }} data-testid="Home_Main">
